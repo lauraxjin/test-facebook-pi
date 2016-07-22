@@ -9,7 +9,8 @@
   <link rel="shortcut icon" href="/images/fbinsightsicon.png" type="image/x-icon">
   <link rel="icon" href="/images/fbinsightsicon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/style.css">
-  <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="path/to/personality-sunburst-chart.standalone.js"></script>
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 </head>
 
@@ -262,6 +263,11 @@
               </div>
             </div>
           </div>
+            
+<!--SunburstChart            -->
+<div id='sunburstChartContainer'></div>
+            
+
           <div class="output--stats-row">
             <div class="output-big-5 output-stats-column">
               <h4 class="base--h4">Personality</h4>
@@ -355,7 +361,19 @@
       </div>
       <% }); %>
   </script>
-
+    
+    
+    
+<!--Sunburst-->
+    
+    <script>
+      $.getJSON('./resources/profile.json', '', function ( profile ) {
+        $('#profile').append('<pre>' + JSON.stringify(profile, null, 2) + '</pre>');
+        var chart = new PersonalitySunburstChart('sunburstChart');
+        chart.show(profile, './resources/profile_photo.jpg');
+      });
+    </script>
+    
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.3.1/purl.min.js"></script>
